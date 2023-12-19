@@ -1,2 +1,6 @@
 # chat-app
-Chat app using MERN Stack
+Chat app created using MERN Stack
+Also uses Socket.io for real time communication
+
+
+
