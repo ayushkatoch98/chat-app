@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+hr{
+    background-color: red;
+    color:red;
+    border: none;
+    height: 1px;
+} */
+
+input {
+    outline: none;
+    border: none;
+    background-color: red;
+    border-color: red;
+    outline-color: red;
+}
+
+input:focus{
+    outline: none;
+    border: none;;
+}
+
+.chatWindow{
+    height: 550px;
+    overflow-y: auto;
+}
