@@ -3,11 +3,21 @@ import MainContent from "../components/MainContent";
 import SideNav from "../components/SideNav";
 import {axiosInstance} from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../reducer";
 
 
 export default function LoginPage() {
 
     const navigate = useNavigate();
+    const isSignedIn = useSelector(state => state.user.isSignedIn);
+    const dispatch = useDispatch();
+
+
+    if (isSignedIn){
+        navigate("/chat/");
+        return;
+    }
 
     const handleLogin = async (event) => {
 
@@ -17,19 +27,28 @@ export default function LoginPage() {
         const formData = new FormData(event.currentTarget);
         const formObject = Object.fromEntries(formData.entries());
 
-        const xx = new FormData();
-        xx.append("email", "ak@gmail.com")
-        xx.append("password", "123");
-        
 
         try{
             const data = await axiosInstance.post("/signin", formObject);
             console.log("Response", data);
+
+            dispatch(setUser(data.data));
+
             navigate("/chat/");
         }
         catch(err){
             console.log("Something went wrong", err)
             alert(err.response.data.message);
+            if (err.status == 401){
+                dispatch(setUser({
+                    jwt: "",
+                    email: "",
+                    username: "",
+                    isSignedIn: false,
+                    image: "",
+                    _id: "",
+                }))
+            }
         }
 
         console.log("FORM DATA", formObject);

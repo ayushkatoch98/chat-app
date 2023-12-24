@@ -62,6 +62,7 @@ export default function ChatWindow(props) {
         axiosInstance.get("/conversation?userID=" + props.friendData._id).then(res => {
             console.log("All Conversation Messages", res);
 
+            props.socket.emit("leave");
             props.socket.emit("join", { conversationID: res.data.data.conversationID })
             setChatData(prev => {
                 return res.data.data;

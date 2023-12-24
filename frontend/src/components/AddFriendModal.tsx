@@ -2,6 +2,7 @@ import { useState } from "react";
 import {axiosInstance} from "../axiosConfig";
 
 
+
 export default function AddFriendModal(props) {
 
     const [isError, setIsError] = useState(null);

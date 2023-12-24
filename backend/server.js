@@ -85,11 +85,12 @@ const io = new Server(ser);
 
 
 
-
+const connectedUserData = {}
 // Socket.IO connection event
 io.on('connection', (socket) => {
 	console.log('A user connected');
 	socket.join(socket.id);
+	connectedUserData[socket.id] = null;
 	// Listen for messages from clients
 	socket.on('sendMessage', async (data) => {
 		console.log('Message from client:', data);
@@ -114,9 +115,15 @@ io.on('connection', (socket) => {
 	socket.on("join", async (data) => {
 
 		const convoID = data.conversationID;
-
+		connectedUserData[socket.id] = data.conversationID;
 		socket.join(convoID);
 
+	})
+
+	socket.on("leave", async (data) => {
+		if (connectedUserData[socket.io] == null) return;
+		socket.leave(connectedUserData[socket.io]);
+		connectedUserData[socket.io] = null;
 	})
 
 	// Listen for disconnection

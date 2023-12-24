@@ -8,13 +8,15 @@ import RegistrationPage from './pages/Registration';
 import ChatPage from './pages/Chat';
 import axios from 'axios';
 
+import { store } from '../store'
+import { Provider, useSelector } from 'react-redux'
+
 function App() {
   const [count, setCount] = useState(0)
   
-  
   return (
     <>
-      
+      <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />}>
@@ -24,6 +26,7 @@ function App() {
           <Route path='/chat' element={<ChatPage></ChatPage>}></Route>
         </Routes>
       </BrowserRouter>
+      </Provider>
     </>
   )
 }
