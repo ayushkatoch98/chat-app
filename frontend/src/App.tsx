@@ -16,7 +16,7 @@ function App() {
   
   return (
     <>
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />}>
@@ -26,7 +26,7 @@ function App() {
           <Route path='/chat' element={<ChatPage></ChatPage>}></Route>
         </Routes>
       </BrowserRouter>
-      </Provider>
+      {/* </Provider> */}
     </>
   )
 }

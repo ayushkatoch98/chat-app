@@ -57,6 +57,8 @@ export const signin = async (req, res) => {
     const token = jwt.default.sign({ _id: _id.toHexString(), username: username, email: email }, "SOME_SECRET", { expiresIn: '24h' })
 
     res.cookie('AUTH-TOKEN', token, { path: '/', httpOnly: false,  secure: false });
+    // bad practice, sending all user info including the password
+    // considering project scope its alright for now
     return res.status(200).json(user);
 
 

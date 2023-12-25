@@ -55,7 +55,7 @@ export default function ChatPage() {
 
     return (
         <>
-            <AuthUser>
+            {/* <AuthUser> */}
 
                 <SideNav setFriendData={setFriendData} />
 
@@ -65,7 +65,7 @@ export default function ChatPage() {
 
                 </MainContent>
 
-            </AuthUser>
+            {/* </AuthUser> */}
 
 
         </>

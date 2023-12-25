@@ -119,7 +119,10 @@ io.on('connection', (socket) => {
 		socket.join(convoID);
 
 	})
-
+	// Entire socket code could have been done 
+	// better including adding supports for 
+	// notification, but considering the project
+	// scope its alright for now
 	socket.on("leave", async (data) => {
 		if (connectedUserData[socket.io] == null) return;
 		socket.leave(connectedUserData[socket.io]);

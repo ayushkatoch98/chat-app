@@ -10,14 +10,14 @@ import { setUser } from "../../reducer";
 export default function LoginPage() {
 
     const navigate = useNavigate();
-    const isSignedIn = useSelector(state => state.user.isSignedIn);
-    const dispatch = useDispatch();
+    // const isSignedIn = useSelector(state => state.user.isSignedIn);
+    // const dispatch = useDispatch();
 
 
-    if (isSignedIn){
-        navigate("/chat/");
-        return;
-    }
+    // if (isSignedIn){
+    //     navigate("/chat/");
+    //     return;
+    // }
 
     const handleLogin = async (event) => {
 
@@ -32,23 +32,23 @@ export default function LoginPage() {
             const data = await axiosInstance.post("/signin", formObject);
             console.log("Response", data);
 
-            dispatch(setUser(data.data));
+            // dispatch(setUser(data.data));
 
             navigate("/chat/");
         }
         catch(err){
             console.log("Something went wrong", err)
             alert(err.response.data.message);
-            if (err.status == 401){
-                dispatch(setUser({
-                    jwt: "",
-                    email: "",
-                    username: "",
-                    isSignedIn: false,
-                    image: "",
-                    _id: "",
-                }))
-            }
+            // if (err.status == 401){
+            //     dispatch(setUser({
+            //         jwt: "",
+            //         email: "",
+            //         username: "",
+            //         isSignedIn: false,
+            //         image: "",
+            //         _id: "",
+            //     }))
+            // }
         }
 
         console.log("FORM DATA", formObject);
